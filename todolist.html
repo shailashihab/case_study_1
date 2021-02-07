@@ -16,27 +16,39 @@
             padding: 5%;
         }
         
-.navbar-nav a:hover{
-    color: darkorange;
-}
-.navbar-nav a{
-    text-decoration: none;
-}
-.active{
-    background-color: green;
-}
+
 #demo{
     margin: 10px;
-    font-size: large;
-    
-    
-}
-
-.navbar{
-    height: 40px;
+    font-size: large;   
 }
 #check{
     color: red;
+}
+.active{
+    background-color: green;
+    
+}
+.navbar a:hover{
+    color: darkorange;
+    background-color: chartreuse;
+  
+    
+}
+.navbar{
+  background-color: black;
+}
+.nav-link{
+  
+  margin: 15px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 5px;
+  font-size: 40px;
+  display: flex;
+  text-decoration: none;
+  color: coral;
+  font-family: 'Times New Roman', Times, serif;
+  
 }
 
       
@@ -45,7 +57,7 @@
 <body>
     <!-- NavBar starts here -->
     
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg ">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto ">    
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -76,15 +88,18 @@ xhttp.onreadystatechange = function(){
 
 
             if (i==3||i==5||i==6) {
-                output += "<input type = checkbox checked disabled >"+Objlist[i].name+"<br>"+"<hr>";
+                output += "<input type = checkbox checked disabled style=width:20px;height:20px;>"+Objlist[i].name+"<br>"+"<hr>";
             }
             else{
-                output += `<input type =checkbox onchange = flagCheck();>${Objlist[i].name}<br><hr>`
+                output += `<input type =checkbox style=width:20px;height:20px; onchange = flagCheck();>${Objlist[i].name}<br><hr>`
             }
 
              
                
-            document.getElementById("demo").innerHTML=output;            
+            document.getElementById("demo").innerHTML=output;
+            document.getElementById("demo").style.padding="20px"; 
+            document.getElementById("demo").style.fontSize="25px"; 
+            document.getElementById("demo").style.fontFamily="TimesNewRoman";                    
         }
         
     }
@@ -96,9 +111,9 @@ function flagCheck(){
     flag++;
     if (flag == 5){alert("Congrats!!5 tasks has completed!!");}
 }
-xhttp.onload=function(){
-    alert("Json data is loaded");
-}
+// xhttp.onload=function(){
+//     alert("Json data is loaded");
+// }
     </script>
 </body>
 </html>
