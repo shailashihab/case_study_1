@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>list_Page</title>
+    <title>To_Do_List</title>
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
@@ -70,7 +70,7 @@
     <!-- NavBar ends here -->   
 
     <div id="content">
-        <div class="btn-group" style="float: right;">
+        <!-- <div class="btn-group" style="float: right;">
             <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Menu
             </button>
@@ -79,7 +79,7 @@
                 <li onclick="del();"><a class="dropdown-item" href="#">Delete tasks</a></li>
                 <li><a class="dropdown-item" href="./sortedList.html">Sort </a></li>
               </ul>
-          </div>
+          </div> -->
         <h1>My To-Do List</h1>
     
         <div id="demo"></div>
@@ -118,10 +118,12 @@ xhttp.send();
 
 
 function flagCheck(){
+    
     var flag = 0;
     var checkBox = document.getElementsByClassName("myCheck");
     var size = checkBox.length;
-    for (let i = 0; i < size; i++) {
+    return new Promise(function(resolve,reject){
+        for (let i = 0; i < size; i++) {
         if(checkBox[i].checked == true){
             flag++;
         }
@@ -129,14 +131,17 @@ function flagCheck(){
     if(flag%5 === 0)
     {
     var j=(flag/5);
+   
         if ((5*j)!=0) {
-            alert("Congrats!!"+(5*j)+" tasks has completed!!");
+           resolve(alert("Congratz."+(5*j)+"tasks have been completed"));
         }
     }    
+    })
+    
 }
-// xhttp.onload=function(){
-//     alert("Json data is loaded");
-// }
+xhttp.onload=function(){
+    alert("Json data is loaded");
+}
 
 
 function del(){

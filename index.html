@@ -38,7 +38,7 @@ form{
 </head>
 <body>
         <div class="bg-text">    
-                    <form action="./todolist.html" name="myForm" id="myForm" onsubmit="return validate();">
+                    <form action="./todolist.html" name="myForm" id="myForm">
                         <div class="mb-3 formHead"><h1>TO DO SIGNIN</h1></div>
                         <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">UserName</label>
@@ -53,22 +53,22 @@ form{
         </div>
 <script>
  // form validation    
-    function validate(){  
+   document.getElementById("myForm").addEventListener("submit",function(evt){ 
         var UserName = document.myForm.UserName.value;
         var password = document.myForm.password.value;
         if (UserName == "" || password == "") {
+            // .preventDefault(); in addEventListener to stop default form redirection action
+            evt.preventDefault();
             alert("Please enter UserName and Password");
-            return false;
         }
         else if (UserName != "admin" || password != 12345 ){
+            evt.preventDefault();
             alert("Username/Password is incorrect!!!!");
-            return false;
         }
         else if (UserName == "admin" && password == "12345") {
-            return true;
         }
 
-    }
+    });
 // form validation ends here
 </script>        
 </body>
