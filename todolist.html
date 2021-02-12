@@ -96,7 +96,6 @@ var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
     if (this.readyState==4&&this.status) {
         var Objlist = JSON.parse(this.responseText);
-        // var Objlist = JSONlist.products;
         for (let i = 0; i < Objlist.length; i++) {
             if (Objlist[i].completed===true) {
                 output += "<input type = checkbox checked disabled style=width:20px;height:20px;>"+Objlist[i].title+"<br>"+"<hr>";
@@ -139,30 +138,11 @@ function flagCheck(){
     })
     
 }
-xhttp.onload=function(){
-    alert("Json data is loaded");
-}
+// xhttp.onload=function(){
+//     alert("Json data is loaded");
+// }
 
 
-function del(){
-
-    
-    var checkBox = document.getElementsByClassName("myCheck");
-    
-    for (let i = 0; i < ObjArr.length; i++) {
-          
-        remainingArr=ObjArr.filter(checkBox[i].checked == true);
-        document.getElementById("demo").innerHTML=(remainingArr);
-            document.getElementById("demo").style.padding="20px"; 
-            document.getElementById("demo").style.fontSize="25px"; 
-            document.getElementById("demo").style.fontFamily="TimesNewRoman";                    
-        }
-
-   
-            
-
-    
-}
 
 
 
