@@ -45,10 +45,12 @@ form{
         <div class="bg-text">    
                     <form action="./todolist.html" name="myForm" id="myForm">
                         <div class="mb-3 formHead"><h1>TO DO SIGNIN</h1></div>
+
                         <div class="mb-3" style="width: 96%;">
                         <label for="exampleInputEmail1" class="form-label">UserName</label>
                         <input type="text" class="form-control" name="UserName" placeholder="Enter Username" id="inputUserName" aria-describedby="emailHelp">
                         </div>
+
                         <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
                             <div class="d-flex">
@@ -57,13 +59,7 @@ form{
                             </div>
                         </div>
 
-
-                        <!-- <div class="flex-container">
-                            <div style="width: 95%;" ><input type="password" onkeyup="trigger();" name="password" class="form-control" id="password" data-toggle="password"></div>
-                            <div style="width: 5%;" onclick="showpass();"><p><i class="fa fa-eye-slash"></i></p></div>
-                            </div> -->
-
-                        <button type="submit" class="btn btn-primary ">Login</button>
+                        <button type="submit" class="btn btn-primary ">SignIn</button>
                     </form>
         </div>
 <script>
@@ -86,8 +82,7 @@ form{
     });
 // form validation ends here
 // show password
-function showpass(){
-       
+function showpass(){ 
        var y = document.getElementsByTagName("i");
        var x = document.getElementById("exampleInputPassword1");
 
@@ -99,11 +94,8 @@ function showpass(){
          x.type = "password";
          y[0].removeAttribute("class","fa fa-eye");
          y[0].setAttribute("class","fa fa-eye-slash")
-       }
-
-       
-      
-     }
+       }      
+}
 </script>        
 </body>
 </html>
