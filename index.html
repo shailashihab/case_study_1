@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
 body{
     background-image: url(http://citrusbits.com/wp-content/uploads/2014/09/Best-To-do-task-list-apps-San-Francisco.jpg);
@@ -34,20 +37,32 @@ form{
     color: coral;
     text-align: center;
 }
+
+
 </style>    
 </head>
 <body>
         <div class="bg-text">    
                     <form action="./todolist.html" name="myForm" id="myForm">
                         <div class="mb-3 formHead"><h1>TO DO SIGNIN</h1></div>
-                        <div class="mb-3">
+                        <div class="mb-3" style="width: 96%;">
                         <label for="exampleInputEmail1" class="form-label">UserName</label>
-                        <input type="text" class="form-control" name="UserName" id="inputUserName" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" name="UserName" placeholder="Enter Username" id="inputUserName" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control"name="password" id="exampleInputPassword1">
+                            <div class="d-flex">
+                                <div style="width: 96%;" ><input type="password" class="form-control"name="password" placeholder="Enter Password" id="exampleInputPassword1"></div>
+                                <div style="width: 4%; color: white; border-radius: 15%; text-align: center;" onclick="showpass();"><p><i class="fa fa-eye-slash"></i></p></div>
+                            </div>
                         </div>
+
+
+                        <!-- <div class="flex-container">
+                            <div style="width: 95%;" ><input type="password" onkeyup="trigger();" name="password" class="form-control" id="password" data-toggle="password"></div>
+                            <div style="width: 5%;" onclick="showpass();"><p><i class="fa fa-eye-slash"></i></p></div>
+                            </div> -->
+
                         <button type="submit" class="btn btn-primary ">Login</button>
                     </form>
         </div>
@@ -70,6 +85,25 @@ form{
 
     });
 // form validation ends here
+// show password
+function showpass(){
+       
+       var y = document.getElementsByTagName("i");
+       var x = document.getElementById("exampleInputPassword1");
+
+       if (x.type === "password") {
+         x.type = "text";
+         y[0].removeAttribute("class","fa fa-eye-slash");
+         y[0].setAttribute("class","fa fa-eye");
+       } else {
+         x.type = "password";
+         y[0].removeAttribute("class","fa fa-eye");
+         y[0].setAttribute("class","fa fa-eye-slash")
+       }
+
+       
+      
+     }
 </script>        
 </body>
 </html>
