@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To_Do_List</title>
+    <title>Sorted_List</title>
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
      -->
@@ -60,7 +61,7 @@
         <nav class="navbar navbar-expand-lg ">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto ">    
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">ToDo List</a>
+                    <a class="nav-link active" aria-current="page" href="./todolist.html">ToDo List</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="./index.html">Logout</a>
@@ -71,57 +72,93 @@
     <!-- NavBar ends here -->   
 
     <div id="content">
-        <!-- <div class="btn-group" style="float: right;">
+       
+            
+           
+        <div class="btn-group" style="float: right;">
             <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Menu
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li onclick="add();"><a class="dropdown-item" href="#">Add tasks</a></li>
-                <li onclick="del();"><a class="dropdown-item" href="#">Clear completed tasks</a></li>
-                <li><a class="dropdown-item" href="./sortedList.html">Sort </a></li>
+                <li><a class="dropdown-item" href="./todolist.html">Complete List</a></li>
+                <li><a class="dropdown-item" href="#">Sort </a></li>
               </ul>
-          </div> -->
-        <h1>My To-Do List</h1>
-    
-        <div id="demo"></div>
+          </div>
+          <h1>My To-Do List</h1>
+          <div class="row">
+              <div class="col-lg-5">
+                <div id=demo1></div>
+              </div>
+              <div class="col-lg-5">
+                <div id="demo2"></div>
+              </div>
+          </div>
         <div id="addTask"></div>
+        <div id="demo"></div>
+        
 
     </div> 
     <script>
         // Json Ajax loading
+        var Objlist=[];
 var output = "";
-var output1 = "";
-var Objlist=[];
-
+var output_completed = "";
+var ObjArr=[];
+var newArr1=[];
+var newArr2=[];
 var x=document.getElementById("demo");
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
+ newArr1=[];
+ newArr2=[];
     if (this.readyState==4&&this.status) {
         Objlist = JSON.parse(this.responseText);
         for (let i = 0; i < Objlist.length; i++) {
             if (Objlist[i].completed===true) {
-                output += "<input type = checkbox checked disabled class='checks' style=width:20px;height:20px;>"+Objlist[i].title+"<br>"+"<hr>";
+                newArr1.push(Objlist[i])
+            //     output_completed += "<input type = checkbox checked disabled class='checks' style=width:20px;height:20px;>"+newArr2[i].title+"<br>"+"<hr>";
             }
             else{
-                output += `<input type =checkbox style=width:20px;height:20px; class='myCheck checks' onchange = flagCheck();>${Objlist[i].title}<br><hr>`
-            }  
+                newArr2.push(Objlist[i]);
+
+            //     output += `<input type =checkbox style=width:20px;height:20px; class='myCheck checks' onchange = flagCheck();>${newArr1[i].title}<br><hr>`
+         } 
+        } 
+         for (let i = 0; i < newArr1.length; i++) {
+            output += "<input type = checkbox checked disabled class='checks' style=width:20px;height:20px;>"+newArr1[i].title+"<br>"+"<hr>";
+            
+             
+         }
+         for (let i = 0; i < newArr2.length; i++) {
+            output_completed += `<input type =checkbox style=width:20px;height:20px; class='myCheck checks' onchange = flagCheck();>${newArr2[i].title}<br><hr>`
+         
+         }
+         console.log(newArr2);
+         console.log(output);
             var ObjArr=output; 
-            document.getElementById("demo").innerHTML=output;
-            document.getElementById("demo").style.padding="20px"; 
-            document.getElementById("demo").style.fontSize="25px"; 
-            document.getElementById("demo").style.fontFamily="TimesNewRoman";                    
-        }
+
+
+            document.getElementById("demo2").innerHTML=output;
+            document.getElementById("demo1").innerHTML=output_completed;
+
+            document.getElementById("demo1").style.padding="20px";
+            document.getElementById("demo1").style.color="red"; 
+            document.getElementById("demo1").style.fontSize="25px"; 
+            document.getElementById("demo1").style.fontFamily="TimesNewRoman"; 
+            document.getElementById("demo2").style.padding="20px"; 
+            document.getElementById("demo2").style.color="green";
+            document.getElementById("demo2").style.fontSize="25px"; 
+            document.getElementById("demo2").style.fontFamily="TimesNewRoman";                   
+        
         
     }
 }
 xhttp.open("GET","https://jsonplaceholder.typicode.com/todos",true);
 xhttp.send();
-function flagCheck(){
-    var promise=flagChecked();
-    promise.then(function(){console.log("success")})
-}
+
+
     
-function flagChecked(){
+    function flagCheck(){
     
     var flag = 0;
     var checkBox = document.getElementsByClassName("myCheck");
@@ -143,73 +180,6 @@ function flagChecked(){
     })
     
 }
-// xhttp.onload=function(){
-//     alert("Json data is loaded");
-// }
-
-
-function del(){
-
-    alert("Clearing completed tasks....");
-    output="";
-    var ObjArr=[];
-        
-    var checks = document.getElementsByClassName("checks");
-    console.log(checks.length);
-        console.log(Objlist);
-                for (let i = 0; i < Objlist.length; i++) { 
-                    if ((checks[i].checked == true)||(checks[i].checked == "true")) {
-                        Objlist.splice(i,1);
-                        
-                        
-                    }
-                }
-                console.log(Objlist);
-                    for (let i = 0; i < Objlist.length; i++){
-                        
-                        output += `<input type =checkbox style=width:20px;height:20px; class='myCheck checks' onchange = flagCheck(); >${Objlist[i].title}<br><hr>`
-
-                    } 
-                    
-                
-                console.log(checks.length);
-       
-        
-            document.getElementById("demo").innerHTML=output;
-            document.getElementById("demo").style.padding="20px"; 
-            document.getElementById("demo").style.fontSize="25px"; 
-            document.getElementById("demo").style.fontFamily="TimesNewRoman";
-            return false;
-}
-
-
-
-var addedTasks={};
-function add(){
-addedTasks.id=prompt("Enter ID");
-addedTasks.UserId=prompt("Enter UserId");
-addedTasks.title=prompt("Enter title");
-addedTasks.completed=prompt("Status of Completion:");
-console.log(Objlist.length);
-Objlist.push(addedTasks);
-addedTasks={};
-
-for (let i = 0; i < Objlist.length; i++) {
-            if (Objlist[i].completed===true||Objlist[i].completed==="true") {
-                output += "<input type = checkbox checked disabled class='checks'  style=width:20px;height:20px;>"+Objlist[i].title+"<br>"+"<hr>";
-            }
-            else{
-                output += `<input type =checkbox style=width:20px;height:20px; class='myCheck checks'  onchange = flagCheck();>${Objlist[i].title}<br><hr>`
-            }  
-            document.getElementById("demo").innerHTML=output;
-            document.getElementById("demo").style.padding="20px"; 
-            document.getElementById("demo").style.fontSize="25px"; 
-            document.getElementById("demo").style.fontFamily="TimesNewRoman";                     
-        }            
-}
-
-
-
     </script>
 </body>
 </html>
